@@ -6,7 +6,7 @@ namespace TemplateMethod
     {
         public override void Attack(Animator animator)
         {
-            animator.SetBool("IsFristAttack", true);
+            animator.SetBool("Attack", true);
         }
     }
 }

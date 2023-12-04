@@ -10,30 +10,30 @@ public class EnemySpawner : MonoBehaviour
     public float TimeForEnemy;
     public List<GameObject> Prefabs = new List<GameObject>();
     private List<AEnemy> Enemies = new List<AEnemy>();
-    private int index = 0;
     private void Start()
     {
+        AddAllEnemies();
         StartCoroutine(SpawnEnemies());
     }
 
     IEnumerator SpawnEnemies()
     {
-        GameObject activeEnemy = Instantiate(Prefabs[index]);
-        Enemies[index].TemplateMethod(activeEnemy.GetComponent<Animator>());
-        index++;
-        yield return new WaitForSeconds(TimeForEnemy);
-        Destroy(activeEnemy);
-
-        if (index >= Prefabs.Count - 1)
+        for (int i = 0; i < Enemies.Count; i++)
         {
-            yield break;
+            GameObject activeEnemy = Instantiate(Prefabs[i]);
+            Enemies[i].TemplateMethod(activeEnemy.GetComponent<Animator>());
+            Debug.Log("Spawn");
+        
+            yield return new WaitForSeconds(TimeForEnemy);
+            Destroy(activeEnemy);
         }
+
+        
     }
 
     private void AddAllEnemies()
     {
         Enemies.Add(new Enemy1());
         Enemies.Add(new Enemy2());
-        Enemies.Add(new Enemy3());
     }
 }

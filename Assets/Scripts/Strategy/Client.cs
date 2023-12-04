@@ -9,17 +9,20 @@ public class Client : MonoBehaviour
 {
     public Animator Animator;
     private Context _context;
+    public delegate void OnDoAttack();
+    public event OnDoAttack? DoAttack;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            performAttack();
+            DoAttack?.Invoke();
         }
     }
 
     private void Start()
     {
+        DoAttack += performAttack;
         _context = new Context(Animator);
     }
 
