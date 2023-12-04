@@ -4,6 +4,9 @@ namespace Command
 {
     public interface ICommand
     {
-        public void Execute(Vector2 position);
+        public GameObject Execute(Vector2 position);
+
+
+        public void Undo();
     }
 }
