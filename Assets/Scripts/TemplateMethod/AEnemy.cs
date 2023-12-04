@@ -4,17 +4,13 @@ namespace TemplateMethod
 {
     public abstract class AEnemy
     {
-        public abstract void Spawn(float x, float y, GameObject gameObject, out GameObject instantObject);
+        
         public abstract void Attack(Animator animator);
 
 
-        public GameObject TemplateMethod(float x, float y, Animator animator, GameObject gameObject)
+        public void TemplateMethod(Animator animator)
         {
-            GameObject instantObject;
-            Spawn(x, y, gameObject, out instantObject);
-            Attack(instantObject.GetComponent<Animator>());
-
-            return instantObject;
+            Attack(animator);
         }
     }
 }

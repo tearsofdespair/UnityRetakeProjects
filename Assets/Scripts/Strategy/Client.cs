@@ -9,7 +9,15 @@ public class Client : MonoBehaviour
 {
     public Animator Animator;
     private Context _context;
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            performAttack();
+        }
+    }
+
     private void Start()
     {
         _context = new Context(Animator);
@@ -18,19 +26,16 @@ public class Client : MonoBehaviour
     public void ShowFirstAttack()
     {
         _context.SetStrategy(new Attack1());
-        performAttack();
     }
     
     public void ShowSecondAttack()
     {
         _context.SetStrategy(new Attack2());
-        performAttack();
     }
     
     public void ShowThirdAttack()
     {
         _context.SetStrategy(new Attack3());
-        performAttack();
     }
 
     private void performAttack()
